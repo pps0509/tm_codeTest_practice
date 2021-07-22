@@ -55,7 +55,9 @@ export default class Memo {
     }
 
     startDragEvent = (e) => {
-        if(e.target.className !== 'header') return;
+        if(e.target.className !== 'header') {
+            return;
+        }
             this.dragged = document.querySelector(`#${this.id}`);
             this.dragged.setAttribute("draggable", true);
             
