@@ -1,13 +1,14 @@
 //import memoService from './memoAction.js';
 
 export default class Memo {
-    constructor(id, content, position, size, opacity) {
+    constructor(id, content, position, size, count) {
 
         this.id = id; 
         this.content = content;
         this.position = position;
         this.size = size;
-        this.opacity = opacity
+        //this.opacity = opacity;
+        this.count = count;
 
         this.draggerPivot = null;
         this.dragged = null;
@@ -50,7 +51,7 @@ export default class Memo {
         this.wrapper.addEventListener("dragenter", this.dragenter.bind(this), false);
         this.wrapper.addEventListener("dragover", this.dragover.bind(this), false);
         this.wrapper.addEventListener("drop", this.drop.bind(this), false);
-        console.log("bindDragEvent fired");
+        //console.log("bindDragEvent fired");
         
     }
 
@@ -63,21 +64,22 @@ export default class Memo {
             
             this.dragged.addEventListener('dragstart', this.startDragging.bind(this),false);
             this.dragged.addEventListener('dragend', this.stopDragging.bind(this), false);  // originally I put "stopDragging" instead of "dragend" it didn't work. 
-            console.log("startDragEvent fired");
+            //console.log("startDragEvent fired");
     } 
 
     startDragging = (e) => {
-        console.log("start Dragging ");
+        //console.log("start Dragging ");
+        //console.log(e.target.style);
         //e.target.style.opacity = .1; // >> 이것또 드래그가 끝난후에 적용이 됨..왜그러지?? 
         this.initXPos = e.pageX - this.dragged.offsetLeft; 
         this.initYPos = e.pageY - this.dragged.offsetTop; 
-        console.log("Positions: ",this.initXPos, this.initYPos);
+        //console.log("Positions: ",this.initXPos, this.initYPos);
         return true;
 
     }
 
     stopDragging = (e) => {
-        console.log("stopDragging event fired");
+        //console.log("stopDragging event fired");
         //e.target.style.opacity = .1;   // >> 드래그가 끝난후에 적용됨. 
         var currXPos = e.pageX - this.initXPos; 
         var currYPos = e.pageY - this.initYPos;
@@ -96,19 +98,18 @@ export default class Memo {
 
     dragenter = (e) => {
         e.preventDefault();
-        console.log("drag Enter");
+        //console.log("drag Enter");
         return true;
     }
 
     dragover = (e) => {
         e.preventDefault();
-        console.log("drag Over");
-        
+        //console.log("drag Over");
     }
 
     drop = (e) => {
         e.stopPropagation();
-        console.log("dropped");
+        //console.log("dropped");
         return false;
     }
 
